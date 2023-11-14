@@ -91,7 +91,7 @@ def get_check_report(wait: WebDriverWait) -> dict[str, Any]:
 
         report_info["certificate_info"] = certificate_info
     except Exception:
-        report_info["certificate_info"] = None
+        pass
 
     return report_info
 

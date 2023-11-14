@@ -108,6 +108,7 @@ class GosUslugi:
         print("Xvfb screen emulator started")
 
         options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
         options.add_argument("--start-maximized")
         self.driver = webdriver.Chrome(options=options)
         print("Chrome driver started")

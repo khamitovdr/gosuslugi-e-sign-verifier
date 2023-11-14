@@ -4,11 +4,7 @@ FROM python:3.11.2-slim-buster
 # create directory for the app user
 RUN mkdir -p /home/app
 
-# create the app user
-RUN addgroup --system app && adduser --system --group app
-
 # create the appropriate directories
-ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
@@ -31,13 +27,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # add app
-COPY . .
-
-# chown all the files to the app user
-RUN chown -R app:app $APP_HOME
-
-# change to the app user
-USER app
+COPY ./app ./app
 
 # run gunicorn
 CMD gunicorn --bind 0.0.0.0:$PORT app.main:app -k uvicorn.workers.UvicornWorker

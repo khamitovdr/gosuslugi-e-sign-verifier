@@ -27,7 +27,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # add app
-COPY ./app ./app
+COPY . .
 
 # run gunicorn
-CMD gunicorn --bind 0.0.0.0:$PORT app.main:app -k uvicorn.workers.UvicornWorker -c gunicorn_config.py
+CMD gunicorn --bind 0.0.0.0:$PORT app.main:app -k uvicorn.workers.UvicornWorker -c gunicorn.conf.py

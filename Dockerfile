@@ -30,4 +30,4 @@ RUN pip install -r requirements.txt
 COPY ./app ./app
 
 # run gunicorn
-CMD gunicorn --bind 0.0.0.0:$PORT app.main:app -k uvicorn.workers.UvicornWorker
+CMD gunicorn --bind 0.0.0.0:$PORT app.main:app -k uvicorn.workers.UvicornWorker -c gunicorn_config.py
